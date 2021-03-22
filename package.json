@@ -1,0 +1,40 @@
+{
+  "name": "oa-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production --progress",
+    "dev": "webpack serve --mode development --progress",
+    "create": "plop --plopfile ./tools/plop/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/preset-env": "^7.13.10",
+    "@babel/preset-react": "^7.12.13",
+    "@babel/preset-typescript": "^7.13.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^5.1.3",
+    "html-webpack-plugin": "^5.3.1",
+    "react-router-dom": "^5.2.0",
+    "scss-loader": "0.0.1",
+    "style-loader": "^2.0.0",
+    "ts-loader": "^8.0.18",
+    "typescript": "^4.2.3",
+    "webpack": "^5.26.3",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2",
+    "webpack-server": "^0.1.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.10",
+    "@types/react": "^17.0.3",
+    "@types/react-dom": "^17.0.2",
+    "babel-loader": "^8.2.0",
+    "plop": "^2.7.4",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "webpack-bundle-analyzer": "^4.4.0"
+  }
+}
