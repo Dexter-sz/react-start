@@ -34,6 +34,12 @@ module.exports = {
                 templateFile: './container/index.scss.hbs',
                 abortOnFail: true,
             },
+            {
+                type: 'add',
+                path: '../../src/container/{{properCase name}}/index.d.ts',
+                templateFile: './container/index.d.ts.hbs',
+                abortOnFail: true,
+            },
         ];
 
         return actions;

@@ -5,9 +5,10 @@
  */
 
 import React from 'react';
+import { Props,State } from './index.d';
 import './index.scss';
 
-class {{ properCase name }} extends React.Component {
+class {{ properCase name }} extends React.Component<Props,State> {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,8 +16,10 @@ class {{ properCase name }} extends React.Component {
     };
   }
   render() {
+    let { } = this.state;
+    let { } = this.props;
     return (
-       <div className="{{properCase name}}-com" >{{properCase name}}</div>
+      <div className="{{properCase name}}-page" >{{properCase name}}</div>
     );
   }
 }
