@@ -1,9 +1,17 @@
 const path = require('path');
+const glob = require('glob');
 const webpack = require('webpack'); // 访问内置的插件
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
 
+// 消除无用样式
+// let PurifycssWebpack = require("purifycss-webpack");
+
+// 触发g压缩的文件格式
+const productionGzipExtensions = /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i;
 
 
 module.exports = {
@@ -14,47 +22,89 @@ module.exports = {
         extensions: [".ts", ".tsx", ".js"]
     },
     devtool: 'inline-source-map',
+    // 输入
     entry: {
         path: './src/app.tsx'
     },
+    // 输出
     output: {
         path: path.resolve(__dirname, 'build'),
-        filename: '[name].[hash].js',
+        filename: './js/[name].[hash].js',
     },
     module: {
         rules: [
-            // js
-            {
-                test: /\.(js|jsx|tsx)$/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env'],
-                    },
-                },
-                exclude: /node_modules/,
-            },
             // ts
             {
-                test: /\.tsx?$/,
-                use: 'ts-loader',
+                test: /\.ts(x?)$/,
                 exclude: /node_modules/,
+                loader: 'babel-loader',
+                options: {
+                    presets: [
+                        '@babel/preset-env',
+                        '@babel/preset-react',
+                        '@babel/preset-typescript'
+                    ],
+                    plugins: [
+                        ['import', { libraryName: 'antd', style: 'css' }], // `style: true` 会加载 less 文件
+                    ],
+                }
             },
-            // css
             {
-                test: /\.css$/,
+                test: /\.css$/i,
                 use: [
-                    'style-loader',
+                    // 样式压缩 代替了style-loader
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: '../'
+                        },
+                    },
                     'css-loader',
-                    'scss-loader'
-                ]
+                ],
+                exclude: /node_modules/
+            },
+            {
+                test: /\.scss$/i,
+                use: [
+                    // 样式压缩 代替了style-loader
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: '../'
+                        },
+                    },
+                    'css-loader',
+                    'sass-loader',
+                    'postcss-loader'
+                ],
+                exclude: /node_modules/
             }
         ],
     },
     plugins: [
+        // html模板
         new HtmlWebpackPlugin({ template: './public/index.html' }),
+        // 清除build的插件
         new CleanWebpackPlugin(),
-        new BundleAnalyzerPlugin(),
+        // 可视化包分析插件
+        // new BundleAnalyzerPlugin(),
+        // 样式去冗余
+        // new PurifycssWebpack({
+        //     paths: glob.sync(path.resolve("./build/*.html"))
+        // }),
+        // 样式分离工具
+        new MiniCssExtractPlugin({
+            filename: "./css/[name].[chunkhash:8].css",
+            chunkFilename: "./css/[id].[chunkhash:8].css"
+        }),
+        // g压缩
+        new CompressionWebpackPlugin({
+            filename: './js/[name].gz[query]',
+            algorithm: 'gzip',
+            test: productionGzipExtensions,
+            threshold: 10240,
+            minRatio: 0.8
+        })
     ],
     devServer: {
         historyApiFallback: true,

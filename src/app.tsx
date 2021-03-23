@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 import { HashRouter as Router } from 'react-router-dom';
 import RouteConfig from '@/router';
 
+import '@/assets/app.scss';
+
 class App extends React.Component {
     render() {
         return (
-            <>
+            <>  
                 <RouteConfig />
             </>
         )

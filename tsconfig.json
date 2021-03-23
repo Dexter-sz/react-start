@@ -9,12 +9,19 @@
         "esModuleInterop": true,
         "allowJs": true,
         "alwaysStrict": true,
+        "removeComments": true, // 是否移除注释
         "paths": {
             "@/*": [
                 "src/*"
             ]
         }
-    }
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules"
+    ],
 }
 // {
 //   "compilerOptions": {

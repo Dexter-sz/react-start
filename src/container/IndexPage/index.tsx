@@ -5,6 +5,7 @@
  */
 
 import React from 'react';
+import '@/assets/index.scss';
 
 class IndexPage extends React.Component {
     constructor(props) {
@@ -15,7 +16,33 @@ class IndexPage extends React.Component {
     }
     render() {
         return (
-            <div>IndexPage</div>
+            <div className="Index-page">
+                <div>IndexPage</div>
+                <div>IndexPage</div>
+                <div>IndexPage</div>
+                <div>IndexPage</div>
+                <div>IndexPage</div>
+                <div>IndexPage</div>
+                <div>IndexPage</div>
+                <div>IndexPage</div>
+                <div>IndexPage</div>
+                <div>IndexPage</div>
+                <div>IndexPage</div>
+                <div>IndexPage</div>
+                <div>IndexPage</div>
+                <div>IndexPage</div>
+                <div>IndexPage</div>
+                <div>IndexPage</div>
+                <div>IndexPage</div>
+                <div>IndexPage</div>
+                <div>IndexPage</div>
+                <div>IndexPage</div>
+                <div>IndexPage</div>
+                <div>IndexPage</div>
+                <div>IndexPage</div>
+                <div>IndexPage</div>
+                <div>IndexPage</div>
+            </div>
         );
     }
 }
