@@ -28,6 +28,12 @@ module.exports = {
                 templateFile: './container/index.js.hbs',
                 abortOnFail: true,
             },
+            {
+                type: 'add',
+                path: '../../src/container/{{properCase name}}/index.scss',
+                templateFile: './container/index.scss.hbs',
+                abortOnFail: true,
+            },
         ];
 
         return actions;
