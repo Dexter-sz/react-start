@@ -61,7 +61,6 @@ module.exports = {
                     },
                     'css-loader',
                 ],
-                exclude: /node_modules/
             },
             {
                 test: /\.scss$/i,
@@ -78,6 +77,38 @@ module.exports = {
                     'postcss-loader'
                 ],
                 exclude: /node_modules/
+            },
+            {
+                test: /\.less$/i,
+                use: [
+                    // 样式压缩 代替了style-loader
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: '../'
+                        },
+                    },
+                    'css-loader',
+                    {
+                        loader: 'less-loader',
+                        options: {
+                            modifyVars: {
+                                'primary-color': '#1DA57A',
+                                'link-color': '#1DA57A',
+                                'border-radius-base': '2px',
+                            },
+                            javascriptEnabled: true,
+                        },
+                    },
+                    'postcss-loader'
+                ],
+            },
+            {
+                test: /\.(png|jpg|gif)$/i,
+                loader: 'url-loader',
+                options: {
+                    limit: 20000,
+                }
             }
         ],
     },
