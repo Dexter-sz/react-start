@@ -25,19 +25,19 @@ module.exports = {
       {
         type: 'add',
         path: '../../src/component/{{properCase name}}/index.tsx',
-        templateFile: './component/index.js.hbs',
+        templateFile: './component_fn/index.js.hbs',
         abortOnFail: true,
       },
       {
         type: 'add',
         path: '../../src/component/{{properCase name}}/index.scss',
-        templateFile: './component/index.scss.hbs',
+        templateFile: './component_fn/index.scss.hbs',
         abortOnFail: true,
       },
       {
             type: 'add',
             path: '../../src/component/{{properCase name}}/index.d.ts',
-            templateFile: './component/index.d.ts.hbs',
+            templateFile: './component_fn/index.d.ts.hbs',
             abortOnFail: true,
         },
     ];
