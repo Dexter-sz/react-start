@@ -12,8 +12,6 @@ const CompressionWebpackPlugin = require('compression-webpack-plugin');
 
 // 触发g压缩的文件格式
 const productionGzipExtensions = /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i;
-
-
 module.exports = {
     resolve: {
         alias: {
@@ -29,8 +27,13 @@ module.exports = {
     // 输出
     output: {
         path: path.resolve(__dirname, 'build'),
-        filename: './js/[name].[hash].js',
+        filename: './js/[name].[fullhash].js',
     },
+    /**
+     * 在webpack5 中 不知道为何package.json下的browserslist
+     * 会影响热更新起作用， 于是在此处处于开发环境时不去理会browserslist
+     */
+    target: process.env.NODE_ENV === 'development' ? 'web' : 'browserslist',
     module: {
         rules: [
             // ts

@@ -11,7 +11,7 @@ export const asyncComponent = loadComponent => (
             };
         }
 
-        componentWillMount() {
+        componentDidMount() {
             if (this.hasLoadedComponent()) {
                 return;
             }

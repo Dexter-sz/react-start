@@ -1,5 +1,7 @@
 {
     "compilerOptions": {
+        "allowUnreachableCode": false, // 不报告执行不到的代码错误。
+        "allowUnusedLabels": false, // 不报告未使用的标签错误
         "baseUrl": ".",
         "outDir": "./build/",
         "sourceMap": true, // 开启sourcemap

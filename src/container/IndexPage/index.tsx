@@ -7,41 +7,23 @@
 import React from 'react';
 import '@/assets/index.scss';
 
-class IndexPage extends React.Component {
+interface IndexPageState {
+    data: Number
+}
+
+class IndexPage extends React.Component<any,IndexPageState> {
+
     constructor(props) {
         super(props);
         this.state = {
-
+            data: 444
         };
     }
     render() {
+        let { data } = this.state;
         return (
             <div className="Index-page">
-                <div>IndexPage</div>
-                <div>IndexPage</div>
-                <div>IndexPage</div>
-                <div>IndexPage</div>
-                <div>IndexPage</div>
-                <div>IndexPage</div>
-                <div>IndexPage</div>
-                <div>IndexPage</div>
-                <div>IndexPage</div>
-                <div>IndexPage</div>
-                <div>IndexPage</div>
-                <div>IndexPage</div>
-                <div>IndexPage</div>
-                <div>IndexPage</div>
-                <div>IndexPage</div>
-                <div>IndexPage</div>
-                <div>IndexPage</div>
-                <div>IndexPage</div>
-                <div>IndexPage</div>
-                <div>IndexPage</div>
-                <div>IndexPage</div>
-                <div>IndexPage</div>
-                <div>IndexPage</div>
-                <div>IndexPage</div>
-                <div>IndexPage</div>
+                <div>{data}</div>
             </div>
         );
     }
